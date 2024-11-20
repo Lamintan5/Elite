@@ -20,6 +20,7 @@ if ($result->num_rows > 0) {
             'id' => $user['id'],
             'name' => $user['name'],
             'email' => $user['email'],
+            'type' => $user['type'],
         ];
         echo json_encode(['success' => true, 'message' => 'Login successful']);
     } else {

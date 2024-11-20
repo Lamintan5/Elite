@@ -4,6 +4,7 @@ session_start(); // Start the session
 $data = json_decode(file_get_contents('php://input'), true);
 $name = $data['name'];
 $email = $data['email'];
+$type = $data['type'];
 $password = password_hash($data['password'], PASSWORD_BCRYPT);
 
 $conn = new mysqli('localhost', 'root', '', 'elite');
@@ -19,7 +20,7 @@ if($count == 1) {
     echo json_encode(['success' => false, 'message' => 'Email already exists. Please try a different email address.']);
 } else {
     // Insert new user into the database
-    $insert = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
+    $insert = "INSERT INTO users (name, email, password, type) VALUES ('$name', '$email', '$password', '$type')";
     $query = mysqli_query($conn,$insert);
     
     if($query) {
@@ -31,6 +32,7 @@ if($count == 1) {
             'id' => $userId,
             'name' => $name,
             'email' => $email,
+            'type' => $type
         ];
         
         echo json_encode(['success' => true, 'message' => 'Registration successful']);

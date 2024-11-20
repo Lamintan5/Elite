@@ -52,8 +52,6 @@
         $(thisAlert).removeClass('alert-validate');
     }
     
-
-
 })(jQuery);
 
 // Fetch vehicle data and display in grid
@@ -66,7 +64,7 @@ async function fetchVehicles() {
         grid.innerHTML = ''; // Clear previous content
 
         // Limit the number of vehicles to 10
-        const vehiclesToDisplay = vehicles.slice(0, 10);
+        const vehiclesToDisplay = vehicles.slice(0, 40);
 
         vehiclesToDisplay.forEach(vehicle => {
             const card = document.createElement('div');
@@ -90,6 +88,7 @@ async function fetchVehicles() {
     }
 }
 
+
 // Call the function to load vehicle data on page load
 window.onload = fetchVehicles;
 
@@ -98,4 +97,19 @@ function navigateToDetails(vehicleId) {
     window.location.href = `vehicle-details.php?id=${vehicleId}`;
 }
 
+window.addEventListener('scroll', reveal);
+        function reveal(){
+        var reveals = document.querySelectorAll('.reveal');
+        for(var i = 0; i < reveals.length; i++){
+            var windowheight = window.innerHeight;
+            var revealtop = reveals[i].getBoundingClientRect().top;
+            var revealpoint = 150;
+
+        if(revealtop < windowheight - revealpoint){
+            reveals[i].classList.add('active');
+        } else {
+            reveals[i].classList.remove('active');
+        }
+    }
+}
 

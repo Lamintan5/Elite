@@ -13,7 +13,7 @@ async function fetchData(section) {
             break;
         default:
             return;
-    }
+    }   
 
     try {
         const response = await fetch(url);
@@ -36,6 +36,13 @@ function populateTable(section, data) {
 
     data.forEach(item => {
         const row = document.createElement('tr');
+         // Set the onclick attribute dynamically
+         row.setAttribute('onclick', 'showRentalDetails(this)');
+
+         // Set a unique identifier for the row (e.g., rental ID)
+         if (item.id) {
+             row.dataset.rentalId = item.id; // Assuming `item.id` is the rental ID
+         }
         Object.values(item).forEach(value => {
             const cell = document.createElement('td');
             cell.textContent = value;

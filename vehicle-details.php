@@ -46,6 +46,14 @@ $name = isset($_SESSION['user']) ? $_SESSION['user']['name'] : null;
         border-radius: 4px;
     }
 
+    #rental-form select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
     .book-btn {
         background-color: #7d2ae8;
         color: white;
@@ -87,6 +95,12 @@ $name = isset($_SESSION['user']) ? $_SESSION['user']['name'] : null;
         <label for="end">Drop-off Date:</label>
         <input type="text" id="end" name="end" placeholder="Select drop-off date" required>
 
+        <label for="method">Payment Method:</label>
+        <select id="method" name="method" required>
+            <option value="" disabled selected>Select payment method</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Cash">Cash</option>
+        </select>
         <button type="submit" class="book-btn">Book Now</button>
     </form>
 </div>
@@ -105,41 +119,68 @@ document.getElementById('rental-form').addEventListener('submit', async function
 
     // Get the current user ID from PHP and vehicle data
     const userId = <?php echo json_encode($userId); ?>;
-    const vehicleId = vehicle.vid;  // Assuming vehicle is a global object with `vid` property
+    const vehicleId = vehicle.vid;
     const vehicleMake = vehicle.make;
-    const vehicleStatus = vehicle.status; // Get vehicle status (not make)
+    const vehicleStatus = vehicle.status;
+    const vehiclePrice = vehicle.price; 
+
+    // Get form input values
+    const startDate = document.getElementById('start').value;
+    const endDate = document.getElementById('end').value;
+
+    // Calculate the number of days
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (isNaN(start) || isNaN(end) || end <= start) {
+        alert('Please enter valid pick-up and drop-off dates.');
+        return;
+    }
+
+    const timeDifference = end.getTime() - start.getTime(); // Difference in milliseconds
+    const numberOfDays = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Convert to days
+
+    // Calculate the total amount
+    const totalAmount = numberOfDays * vehiclePrice;
 
     // Add custom data to form
     formData.append('vid', vehicleId);
     formData.append('cid', userId);
-    formData.append('name', userName); // Ensure `userName` is defined or fetched correctly
-    formData.append('payid', ''); // Ensure payid is handled properly, if needed
+    formData.append('name', userName); 
+    formData.append('payid', '');
     formData.append('vehicle', vehicleMake);
+    formData.append('amount', totalAmount);
 
     // Check if the vehicle is unavailable
-    if(vehicleStatus === "Unavailable") {
-        alert('This vehicle is currently unavailable. Please try booking a different vehicle');
-        window.location.href = 'index.php'; // Redirect to home page
+    if(userId===null || userId === "" ){
+        alert('Please log in in order to continue');
+        window.location.href = 'auth.html?type=Customer';
     } else {
-        try {
-            const response = await fetch('add_rental.php', {
-                method: 'POST',
-                body: formData,
-            });
+        if(vehicleStatus === "Unavailable") {
+            alert('This vehicle is currently unavailable. Please try booking a different vehicle');
+            window.location.href = 'index.php'; // Redirect to home page
+        } else {
+            try {
+                const response = await fetch('add_rental.php', {
+                    method: 'POST',
+                    body: formData,
+                });
 
-            const result = await response.json();
+                const result = await response.json();
 
-            if (result.success) {
-                alert('Vehicle Rented successfully');
-                window.location.href = 'index.php'; // Redirect after success
-            } else {
-                alert(`Error: ${result.message}`);
+                if (result.success) {
+                    alert('Vehicle Rented successfully');
+                    window.location.href = 'index.php'; // Redirect after success
+                } else {
+                    alert(`Error: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error adding vehicle:', error);
+                alert('An error occurred. Please try again.');
             }
-        } catch (error) {
-            console.error('Error adding vehicle:', error);
-            alert('An error occurred. Please try again.');
         }
     }
+    
 });
 
 
@@ -177,12 +218,13 @@ document.getElementById('rental-form').addEventListener('submit', async function
                         <img class="vehicle-image" src="${vehicle.image}" alt="${vehicle.make}">
                     </div>
                     <div class="vehicle-info">
-                        <h2>${vehicle.make} ${vehicle.model}</h2>
+                        <h2>${vehicle.make}</h2>
+                        <p><strong>Model:</strong> ${vehicle.model}</p>
                         <p><strong>Year:</strong> ${vehicle.year}</p>
                         <p><strong>Status:</strong> ${vehicle.status}</p>
                         <p>${vehicle.description}</p>
                         <div class="price"><strong>Price per Day: </strong> $${vehicle.price}</div>
-                        
+                        <p>Read our <a href="#">TERMS AND CONDITIONS HERE.</a></p>
                     </div>
                 </div>
 

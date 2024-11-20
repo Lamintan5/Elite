@@ -15,9 +15,9 @@ session_start(); // Start the session
     <!-- Sidebar -->
     <div class="sidebar">
         <div>
-            <a href="#" class="nav-link active" data-section="vehicles">Vehicles</a>
-            <a href="#" class="nav-link" data-section="rentals">Rentals</a>
-            <a href="#" class="nav-link" data-section="payments">Payments</a>
+            <a href="#" class="nav-link active" data-section="vehicles"><i class="fa-solid fa-car"></i> Vehicles</a>
+            <a href="#" class="nav-link" data-section="rentals"><i class="fa-solid fa-ticket"></i> Rentals</a>
+            <a href="#" class="nav-link" data-section="payments"><i class="fa-solid fa-money-bill"></i> Payments</a>
         </div>
         
         <div class="user-profile">
@@ -34,7 +34,7 @@ session_start(); // Start the session
                 } else {
                     echo "<p>You are not logged in.</p>";
                 }
-                ?>
+            ?>
             </div>
         </div>
     </div>
@@ -59,11 +59,9 @@ session_start(); // Start the session
                     
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody ></tbody>
         </table>
     </section>
-
-
 
         <!-- Rentals Section -->
         <section id="rentals" class="content-section" style="display: none;">
@@ -76,6 +74,7 @@ session_start(); // Start the session
                         <th>Vehicle</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        
                     </tr>
                 </thead>
                 <tbody></tbody>

@@ -87,6 +87,13 @@
 	</div>
 
 	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+        const userType = urlParams.get('type');  // Retrieve the 'type' parameter from the URL
+
+        // Set the global 'type' variable with a default value of 'admin'
+        const type = userType && userType !== 'null' ? userType : 'Admin';
+
+
 		// Toggle between Login and Register forms
 		const toggleForm = document.getElementById('toggle-form');
 		const formTitle = document.getElementById('form-title');
@@ -123,7 +130,7 @@
 					name: document.getElementById('register-name').value,
 					email: document.getElementById('register-email').value,
 					password: document.getElementById('register-password').value,
-					type: 'Admin'
+					type: type
 				}
 				: {
 					email: document.getElementById('login-email').value,

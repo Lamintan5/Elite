@@ -17,7 +17,6 @@ session_start(); // Start the session
     
 </head>
 <body>
-    
 
     <header>
         <h2 class="logo"><span>E</span>lite <span>C</span>ar <span>R</span>ental</h2>
@@ -27,10 +26,11 @@ session_start(); // Start the session
             <a href="#services">Services</a>
             <a href="#">Reviews</a>
             <a href="#">Contact</a>
-            <?php if (isset($_SESSION['user'])): ?>
-                <!-- Show Dashboard if user is logged in -->
+            <?php if (isset($_SESSION['user']) && $_SESSION['user']['type'] === 'Admin'): ?>
+                <!-- Show Dashboard if user is logged in and user type is Admin -->
                 <a href="dashboard.php">Dashboard</a>
             <?php endif; ?>
+
         </nav>
         <?php if (isset($_SESSION['user'])): ?>
             <!-- Show Log out if user is logged in -->
@@ -43,11 +43,15 @@ session_start(); // Start the session
 
     <section class="home">
         <div class="content">
-            <h2>Need to travel in <span>Luxury?</span></h2>
+            <h2>Need to travel <span class="auto-type"></span></h2>
+            
             <p>Choose from our fleet of high-spec vehicles for your next trip to the airport, wedding, or weekend getaway.</p>
             <div class="btn-group">
-                <a href="#">Online Booking</a>
+                <a href="vehicle.php">Online Booking</a>
             </div>
+        </div>
+        <div class="home-image">
+            
         </div>
     </section>
 
@@ -59,6 +63,8 @@ session_start(); // Start the session
         <div class="vehicles-grid">
             <!-- Vehicle cards will be populated here -->
         </div>
+        <br>
+        <a href="vehicle.php">View All</a>
     </section>
 
     <!-- Services Start -->
@@ -132,13 +138,12 @@ session_start(); // Start the session
     
 
     <section class="contact-us">
-        <dic class="cotact-us-container">
+        <div class="cotact-us-container">
             <h4>Book Online Today And Travel</h4>
             <h4>In Comfort On Your Next Trip</h4>
             <p>Contact us today and book your next trip using our secure online booking system.</p>
             <a href="#" class="btn-talk">Talk to us</a>
-        </dic>
-
+        </div>
     </section>
 
     
@@ -336,7 +341,17 @@ session_start(); // Start the session
         </div>
 
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script>
+            var typed = new Typed(".auto-type",{
+                strings : ["in Luxury?", "urgently?", "abroad?"],
+                typeSpeed: 100,
+                backSpeed: 100,
+                looped: true
+            })
+        </script>
 </body>
 </html>

@@ -30,6 +30,10 @@ header {
     cursor: default;
 }
 
+.logo :hover{
+  cursor: pointer;
+}
+
 .logo span {
     color: #7d2ae8;
 }
@@ -74,15 +78,37 @@ header {
     background-size: cover;
     background-position: center;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-around;
     padding: 30px 200px;
 }
+
+.home-image {
+  height: 600px;
+  width: 520px;
+  background-image: url("../images/person.png");
+  background-size: contain;
+}
+
+/* REVEAL EFFECT */
+.reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: all .6s ease-in-out;
+}
+
+.reveal.active{
+  transform: translateY(0px);
+  opacity: 1;
+}
+
 
 /* Vehicles section */
 .vehicles-section {
   padding: 50px 200px;
   text-align: center;
-  background-color: #f9f9f9;
 }
 
 /* Vehicles grid */

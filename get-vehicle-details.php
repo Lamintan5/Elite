@@ -1,17 +1,13 @@
 <?php
 header('Content-Type: application/json');
 
-// Database connection
 $conn = new mysqli('localhost', 'root', '', 'elite');
 if ($conn->connect_error) {
     echo json_encode(['error' => 'Database connection failed']);
     exit();
 }
 
-// Fetch the vehicle ID from the request
 $vehicleId = $_GET['id'];
-
-// Query to fetch vehicle details
 $sql = "SELECT * FROM vehicles WHERE vid = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('i', $vehicleId);

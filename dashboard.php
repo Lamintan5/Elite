@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,6 @@ session_start(); // Start the session
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"/>
 </head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar">
         <div>
             <a href="#" class="nav-link active" data-section="vehicles"><i class="fa-solid fa-car"></i> Vehicles</a>
@@ -39,9 +38,7 @@ session_start(); // Start the session
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Vehicles Section -->
         <section id="vehicles" class="content-section">
         <div class="row"> 
             <h2>Vehicles</h2>
@@ -63,7 +60,6 @@ session_start(); // Start the session
         </table>
     </section>
 
-        <!-- Rentals Section -->
         <section id="rentals" class="content-section" style="display: none;">
             <h2>Rentals</h2>
             <table id="rentals-table">
@@ -81,7 +77,6 @@ session_start(); // Start the session
             </table>
         </section>
 
-        <!-- Payments Section -->
         <section id="payments" class="content-section" style="display: none;">
             <h2>Payments</h2>
             <table id="payments-table">
@@ -99,7 +94,6 @@ session_start(); // Start the session
         </section>
     </div>
 
-    <!-- Modal for Adding Vehicle -->
     <div id="addVehicleModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -119,7 +113,10 @@ session_start(); // Start the session
                 
                 <label for="price">Price Per Day:</label>
                 <input type="number" id="price" name="price" placeholder="Enter price per day" required>
-                
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" placeholder="Description" rows="5" style="resize: none;" required></textarea>
+
                 
                 <button type="submit">Submit</button>
             </form>
@@ -128,24 +125,15 @@ session_start(); // Start the session
 
     <script src="js/api.js"></script>   
     <script>
-        // JavaScript to handle navigation
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('.content-section');
 
         navLinks.forEach(link => {
             link.addEventListener('click', event => {
                 event.preventDefault();
-
-                // Remove active class from all links
                 navLinks.forEach(link => link.classList.remove('active'));
-
-                // Hide all sections
                 sections.forEach(section => section.style.display = 'none');
-
-                // Add active class to clicked link
                 link.classList.add('active');
-
-                // Show the selected section
                 const sectionId = link.getAttribute('data-section');
                 document.getElementById(sectionId).style.display = 'block';
             });

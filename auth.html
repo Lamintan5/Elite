@@ -88,13 +88,10 @@
 
 	<script>
 		const urlParams = new URLSearchParams(window.location.search);
-        const userType = urlParams.get('type');  // Retrieve the 'type' parameter from the URL
+        const userType = urlParams.get('type'); 
 
-        // Set the global 'type' variable with a default value of 'admin'
         const type = userType && userType !== 'null' ? userType : 'Admin';
 
-
-		// Toggle between Login and Register forms
 		const toggleForm = document.getElementById('toggle-form');
 		const formTitle = document.getElementById('form-title');
 		const loginFields = document.getElementById('login-fields');
@@ -105,14 +102,12 @@
 			e.preventDefault();
 
 			if (loginFields.style.display === 'none') {
-				// Show Login form
 				loginFields.style.display = 'block';
 				registerFields.style.display = 'none';
 				formTitle.textContent = 'Login';
 				formButton.textContent = 'Login';
 				toggleForm.innerHTML = 'Create your Account <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>';
 			} else {
-				// Show Register form
 				loginFields.style.display = 'none';
 				registerFields.style.display = 'block';
 				formTitle.textContent = 'Register';
@@ -121,7 +116,6 @@
 			}
 		});
 
-		// Handle form submission
 		formButton.addEventListener('click', async () => {
 			const isRegister = registerFields.style.display === 'block';
 			const url = isRegister ? 'register.php' : 'login.php';
@@ -145,11 +139,10 @@
 
 			const result = await response.json();
 			if (result.success) {
-            alert(result.message); // Show success message
-            // Redirect to the home page
-            window.location.href = "index.php"; // Ensure you have a `home.html` file in the same directory
+            alert(result.message);
+            window.location.href = "index.php";
         } else {
-            alert(result.message); // Show error message
+            alert(result.message);
         }
 		});
 	</script>

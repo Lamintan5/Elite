@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
 $data = json_decode(file_get_contents('php://input'), true);
 $name = $data['name'];
@@ -19,15 +19,12 @@ $count = mysqli_num_rows($result);
 if($count == 1) {
     echo json_encode(['success' => false, 'message' => 'Email already exists. Please try a different email address.']);
 } else {
-    // Insert new user into the database
     $insert = "INSERT INTO users (name, email, password, type) VALUES ('$name', '$email', '$password', '$type')";
     $query = mysqli_query($conn,$insert);
     
     if($query) {
-        // Get the user's ID after successful insertion
-        $userId = mysqli_insert_id($conn); // Get the last inserted user ID
+        $userId = mysqli_insert_id($conn); 
         
-        // Store user data in the session
         $_SESSION['user'] = [
             'id' => $userId,
             'name' => $name,

@@ -7,7 +7,6 @@ if ($conn->connect_error) {
     exit();
 }
 
-// Validate and upload image
 if (isset($_FILES['image'])) {
     $image = $_FILES['image'];
     $imagePath = 'uploads/' . basename($image['name']);
@@ -20,7 +19,6 @@ if (isset($_FILES['image'])) {
     exit();
 }
 
-// Validate other fields
 $make = $_POST['make'];
 $model = $_POST['model'];
 $year = $_POST['year'];
@@ -32,7 +30,6 @@ if (empty($make) || empty($model) || empty($year) || empty($price)) {
     exit();
 }
 
-// Insert data into the database
 $sql = "INSERT INTO vehicles (image, make, model, year, price, status, description) 
         VALUES ('$imagePath', '$make', '$model', '$year', '$price', 'Available', '$description')";
 

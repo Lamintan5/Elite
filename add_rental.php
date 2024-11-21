@@ -7,7 +7,6 @@ if ($conn->connect_error) {
     exit();
 }
 
-// Validate other fields
 $vid = $_POST['vid'];
 $vehicle = $_POST['vehicle'];
 $cid = $_POST['cid'];
@@ -23,11 +22,9 @@ if (empty($start) || empty($end) || empty($cid) || empty($vid) || empty($amount)
     exit();
 }
 
-// Start a transaction
 $conn->begin_transaction();
 
 try {
-    // Insert data into the rental table
     $rentalSql = "INSERT INTO rental (vid, vehicle, cid, name, payid, start, end) 
                   VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($rentalSql);
@@ -37,7 +34,6 @@ try {
         throw new Exception('Error inserting rental data: ' . $stmt->error);
     }
 
-    // Update the status of the vehicle to 'Unavailable'
     $updateSql = "UPDATE vehicles SET status = 'Unavailable' WHERE vid = ?";
     $stmt = $conn->prepare($updateSql);
     $stmt->bind_param('s', $vid);
@@ -46,7 +42,6 @@ try {
         throw new Exception('Error updating vehicle status: ' . $stmt->error);
     }
 
-    // Insert payment details
     $paymentSql = "INSERT INTO payments (cid, name, amount, method) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($paymentSql);
     $stmt->bind_param('ssds', $cid, $name, $amount, $method);
@@ -55,16 +50,13 @@ try {
         throw new Exception('Error inserting payment data: ' . $stmt->error);
     }
 
-    // Commit the transaction
     $conn->commit();
 
     echo json_encode(['success' => true, 'message' => 'Vehicle rented successfully, status updated to Unavailable, and payment recorded']);
 } catch (Exception $e) {
-    // Roll back the transaction on error
     $conn->rollback();
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
 
-// Close the connection
 $conn->close();
 ?>

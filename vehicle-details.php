@@ -123,12 +123,8 @@ document.getElementById('rental-form').addEventListener('submit', async function
     const vehicleMake = vehicle.make;
     const vehicleStatus = vehicle.status;
     const vehiclePrice = vehicle.price; 
-
-    // Get form input values
     const startDate = document.getElementById('start').value;
     const endDate = document.getElementById('end').value;
-
-    // Calculate the number of days
     const start = new Date(startDate);
     const end = new Date(endDate);
 
@@ -137,28 +133,24 @@ document.getElementById('rental-form').addEventListener('submit', async function
         return;
     }
 
-    const timeDifference = end.getTime() - start.getTime(); // Difference in milliseconds
-    const numberOfDays = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Convert to days
+    const timeDifference = end.getTime() - start.getTime();
+    const numberOfDays = Math.ceil(timeDifference / (1000 * 3600 * 24)); 
 
-    // Calculate the total amount
     const totalAmount = numberOfDays * vehiclePrice;
 
-    // Add custom data to form
     formData.append('vid', vehicleId);
     formData.append('cid', userId);
     formData.append('name', userName); 
     formData.append('payid', '');
     formData.append('vehicle', vehicleMake);
     formData.append('amount', totalAmount);
-
-    // Check if the vehicle is unavailable
     if(userId===null || userId === "" ){
         alert('Please log in in order to continue');
         window.location.href = 'auth.html?type=Customer';
     } else {
         if(vehicleStatus === "Unavailable") {
             alert('This vehicle is currently unavailable. Please try booking a different vehicle');
-            window.location.href = 'index.php'; // Redirect to home page
+            window.location.href = 'index.php';
         } else {
             try {
                 const response = await fetch('add_rental.php', {
@@ -170,7 +162,7 @@ document.getElementById('rental-form').addEventListener('submit', async function
 
                 if (result.success) {
                     alert('Vehicle Rented successfully');
-                    window.location.href = 'index.php'; // Redirect after success
+                    window.location.href = 'index.php'; 
                 } else {
                     alert(`Error: ${result.message}`);
                 }
@@ -184,17 +176,14 @@ document.getElementById('rental-form').addEventListener('submit', async function
 });
 
 
-        // Fetch vehicle ID from URL query parameter
         const urlParams = new URLSearchParams(window.location.search);
         const vehicleId = urlParams.get('id');
 
-        // Initialize Flatpickr date pickers
     flatpickr("#start", {
         enableTime: false,
         dateFormat: "Y-m-d",
-        minDate: "today", // Disallow past dates
+        minDate: "today",
         onChange: function(selectedDates, dateStr) {
-            // Update the minimum date of drop-off based on pick-up date
             document.querySelector("#end")._flatpickr.set("minDate", dateStr);
         }
     });
@@ -202,16 +191,13 @@ document.getElementById('rental-form').addEventListener('submit', async function
     flatpickr("#end", {
         enableTime: false,
         dateFormat: "Y-m-d",
-        minDate: "today" // Disallow past dates
+        minDate: "today" 
     });
 
-    // Fetch vehicle details based on ID
     async function fetchVehicleDetails() {
             try {
                 const response = await fetch(`get-vehicle-details.php?id=${vehicleId}`);
                 vehicle = await response.json();
-
-                // Update the DOM with vehicle details
                 document.getElementById('vehicle-details').innerHTML = `
                 <div class="vehicle-item">
                                 <div >
@@ -234,8 +220,6 @@ document.getElementById('rental-form').addEventListener('submit', async function
                 document.getElementById('vehicle-details').innerHTML = `<p>Error loading details.</p>`;
         }
     }
-
-        // Call the function to fetch vehicle details
     fetchVehicleDetails();
 </script>
 

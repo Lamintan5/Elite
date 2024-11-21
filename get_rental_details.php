@@ -1,7 +1,6 @@
 <?php
 header('Content-Type: application/json');
 
-// Database connection
 $conn = new mysqli('localhost', 'root', '', 'elite');
 if ($conn->connect_error) {
     echo json_encode(['success' => false, 'message' => 'Database connection failed']);
@@ -14,7 +13,6 @@ if (!$rentalId) {
     exit();
 }
 
-// Fetch rental details
 $sql = "SELECT * FROM rental WHERE rid = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('i', $rentalId);

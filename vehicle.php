@@ -22,16 +22,13 @@
         <nav class="navigation">
             
             <?php if (isset($_SESSION['user']) && $_SESSION['user']['type'] === 'Admin'): ?>
-                <!-- Show Dashboard if user is logged in and user type is Admin -->
                 <a href="dashboard.php">Dashboard</a>
             <?php endif; ?>
 
         </nav>
         <?php if (isset($_SESSION['user'])): ?>
-            <!-- Show Log out if user is logged in -->
             <a href="logout.php" class="btn-talk">Log out</a>
         <?php else: ?>
-            <!-- Show Log in if no user session -->
             <a href="auth.html" class="btn-talk">Log in</a>
         <?php endif; ?>
     </header>
@@ -42,7 +39,6 @@
             <h1 class="position-absolute text-uppercase text-primary color:#7d2ae8">Our Vehicles</h1>
         </div>
         <div class="vehicles-grid">
-            <!-- Vehicle cards will be populated here -->
         </div>
         <br>
     </section>

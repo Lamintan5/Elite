@@ -131,8 +131,8 @@ header {
 }
 
 .vehicle-card:hover {
-  transform: translateY(-10px); /* Elevates the card */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Larger shadow for hover effect */
+  transform: translateY(-10px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
 }
 
 /* Vehicle image */

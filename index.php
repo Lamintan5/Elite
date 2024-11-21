@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -57,25 +57,23 @@ session_start(); // Start the session
 
     <section id="vehicles" class="vehicles-section">
         <div class="position-relative d-flex align-items-center justify-content-center">
-            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Vehicles</h1>
-            <h1 class="position-absolute text-uppercase text-primary color:#7d2ae8">Our Vehicles</h1>
+            <h1 class="reveal display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Vehicles</h1>
+            <h1 class="reveal position-absolute text-uppercase text-primary color:#7d2ae8">Our Vehicles</h1>
         </div>
         <div class="vehicles-grid">
-            <!-- Vehicle cards will be populated here -->
         </div>
         <br>
         <a href="vehicle.php">View All</a>
     </section>
 
-    <!-- Services Start -->
     <div class="container-fluid pt-5" id="service">
             <div class="container">
                 <div class="position-relative d-flex align-items-center justify-content-center">
-                    <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Service</h1>
-                    <h1 class="position-absolute text-uppercase text-primary color:#7d2ae8">Our Services</h1>
+                    <h1 class="reveal display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Service</h1>
+                    <h1 class="reveal position-absolute text-uppercase text-primary color:#7d2ae8">Our Services</h1>
                 </div>
                 <div class="row pb-3">
-                    <div class="col-lg-4 col-md-6 text-center mb-5">
+                    <div class="reveal col-lg-4 col-md-6 text-center mb-5">
                         <div class="d-flex align-items-center justify-content-center mb-4">
                             <i class="fa-solid fa-arrow-up service-icon bg-primary text-white mr-3"></i>
                             <h4 class="font-weight-bold m-0">Short-Term Car Rentals</h4>
@@ -84,7 +82,7 @@ session_start(); // Start the session
                         <p>Rent a car for a day, weekend, or a few days to meet your short-term transportation needs.</p>
                         <a class="border-bottom border-primary text-decoration-none" href="">Read More</a>
                     </div>
-                    <div class="col-lg-4 col-md-6 text-center mb-5">
+                    <div class="reveal col-lg-4 col-md-6 text-center mb-5">
                         <div class="d-flex align-items-center justify-content-center mb-4">
                             <i class="fa-solid fa-arrow-down service-icon bg-primary text-white mr-3"></i>
                             <h4 class="font-weight-bold m-0">Long-Term Car Rentals</h4>
@@ -93,7 +91,7 @@ session_start(); // Start the session
                         <p>Ideal for extended stays, offering discounted rates for rentals lasting weeks or months.</p>
                         <a class="border-bottom border-primary text-decoration-none" href="">Read More</a>
                     </div>
-                    <div class="col-lg-4 col-md-6 text-center mb-5">
+                    <div class="reveal col-lg-4 col-md-6 text-center mb-5">
                         <div class="d-flex align-items-center justify-content-center mb-4">
                             <i class="fa-solid fa-car service-icon bg-primary text-white mr-3"></i>
                             <h4 class="font-weight-bold m-0">Luxury Car Rentals</h4>
@@ -103,7 +101,7 @@ session_start(); // Start the session
                         <p>Choose from a selection of high-end vehicles for special events or a premium driving experience.</p>
                         <a class="border-bottom border-primary text-decoration-none" href="">Read More</a>
                     </div>
-                    <div class="col-lg-4 col-md-6 text-center mb-5">
+                    <div class="reveal col-lg-4 col-md-6 text-center mb-5">
                         <div class="d-flex align-items-center justify-content-center mb-4">
                             <i class="fa-solid fa-plane service-icon bg-primary text-white mr-3"></i>
                             <h4 class="font-weight-bold m-0">Airport Pickup & Drop-Off</h4>
@@ -112,7 +110,7 @@ session_start(); // Start the session
                         <p>Convenient car rental services directly from the airport, ensuring you have a car as soon as you land.</p>
                         <a class="border-bottom border-primary text-decoration-none" href="">Read More</a>
                     </div>
-                    <div class="col-lg-4 col-md-6 text-center mb-5">
+                    <div class="reveal col-lg-4 col-md-6 text-center mb-5">
                         <div class="d-flex align-items-center justify-content-center mb-4">
                             <i class="fa-solid fa-road service-icon bg-primary text-white mr-3"></i>
                             <h4 class="font-weight-bold m-0">24/7 Roadside Assistance</h4>
@@ -121,7 +119,7 @@ session_start(); // Start the session
                         <p>Peace of mind with round-the-clock support in case of breakdowns or emergencies while on the road.</p>
                         <a class="border-bottom border-primary text-decoration-none" href="">Read More</a>
                     </div>
-                    <div class="col-lg-4 col-md-6 text-center mb-5">
+                    <div class="reveal col-lg-4 col-md-6 text-center mb-5">
                         <div class="d-flex align-items-center justify-content-center mb-4">
                             <i class="fa-solid fa-map service-icon bg-primary text-white mr-3"></i>
                             <h4 class="font-weight-bold m-0">GPS & Car Seat Rentals</h4>
@@ -134,42 +132,37 @@ session_start(); // Start the session
             </div>
         </div>
     
-    <!-- Services End -->
-    
 
     <section class="contact-us">
         <div class="cotact-us-container">
-            <h4>Book Online Today And Travel</h4>
-            <h4>In Comfort On Your Next Trip</h4>
-            <p>Contact us today and book your next trip using our secure online booking system.</p>
-            <a href="#" class="btn-talk">Talk to us</a>
+            <h4 class="reveal">Book Online Today And Travel</h4>
+            <h4 class="reveal">In Comfort On Your Next Trip</h4>
+            <p class="reveal">Contact us today and book your next trip using our secure online booking system.</p>
+            <a href="#" class="btn-talk reveal">Talk to us</a>
         </div>
     </section>
 
-    
-    <!-- Testimonial Start -->
     <div class="container-fluid py-5" id="testimonial">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
-                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Review</h1>
-                <h1 class="position-absolute text-uppercase text-primary">Clients Say</h1>
+                <h1 class="reveal display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Review</h1>
+                <h1 class="reveal position-absolute text-uppercase text-primary">Clients Say</h1>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="owl-carousel testimonial-carousel">
                         <div class="text-center">
-                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <h4 class="font-weight-light mb-4">Dolor eirmod diam stet kasd sed. Aliqu rebum est eos. Rebum elitr dolore et eos labore, stet justo sed est sed. Diam sed sed dolor stet accusam amet eirmod eos, labore diam clita</h4>
-                            <img class="img-fluid rounded-circle mx-auto mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNBs1Mg71nW8adit7yHWWokb25jXLe1ATFpTWhpl2VZXqnZt6yg52pkslyGQQ5pSYWyvw&usqp=CAU" style="width: 80px; height: 80px;">
-                            <h5 class="font-weight-bold m-0">Client Name</h5>
-                            <span>Profession</span>
+                            <i class="fa fa-3x fa-quote-left text-primary mb-4 reveal"></i>
+                            <h4 class="reveal font-weight-light mb-4">Dolor eirmod diam stet kasd sed. Aliqu rebum est eos. Rebum elitr dolore et eos labore, stet justo sed est sed. Diam sed sed dolor stet accusam amet eirmod eos, labore diam clita</h4>
+                            <img class="reveal img-fluid rounded-circle mx-auto mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNBs1Mg71nW8adit7yHWWokb25jXLe1ATFpTWhpl2VZXqnZt6yg52pkslyGQQ5pSYWyvw&usqp=CAU" style="width: 80px; height: 80px;">
+                            <h5 class="font-weight-bold m-0">Mellisa Fumero</h5>
+                            <span class="reveal">Profession</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Testimonial End -->
 
     <section class="faq" id="faq">
                 <div class="column">
@@ -283,7 +276,6 @@ session_start(); // Start the session
     </section>
 
 
-    <!-- Site footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="row">
@@ -341,7 +333,7 @@ session_start(); // Start the session
         </div>
 
     </footer>
-
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/main.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>

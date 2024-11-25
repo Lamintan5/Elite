@@ -77,11 +77,9 @@ $name = isset($_SESSION['user']) ? $_SESSION['user']['name'] : null;
     <h2 class="logo"><span>E</span>lite <span>C</span>ar <span>R</span>ental</h2>
     
     <?php if (isset($_SESSION['user'])): ?>
-        <!-- Show Log out if user is logged in -->
         <a href="logout.php" class="btn-talk">Log out</a>
     <?php else: ?>
-        <!-- Show Log in if no user session -->
-        <a href="auth.html" class="btn-talk">Log in</a>
+        <a href="auth.html?type=Customer" class="btn-talk">Log in</a>
     <?php endif; ?>
 </header>
 <div class="rental-form-container">
